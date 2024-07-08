@@ -1,0 +1,58 @@
+ 1. install git 
+ cmd .. git -v ... version
+ 
+ 2.add the project and use the git.. 
+ open terminal and type "git init".
+
+ 3." git status" .. red color folder not add in the git ..
+
+ 4. says to git the save filess to add it . "git add . //file name"
+
+ 5. now this file node_module folder not modify it so , the git cannnot the tracked the folder.
+ create the file ".gitingnore" .. inside the file
+
+ # ignore node_modules directory
+ node_modules/
+
+ # other entries
+ and in terminal type .. "git status .gitingnore"
+
+  // remove the node_modules in already add in git .
+  git rm -r --cached node_modules
+
+6. snapshot save.
+git commit -m "massage .. // first version of our hotels"
+
+7. this code is save in online 
+github open and create the online repostery
+---> create the reposetery ... in github
+line by line cmd run it...
+--> git remote add origin https://github.com/akky3001/Node_demo.git
+ --> git branch -M main
+ // in this code will be push..
+ --> git push -u origin main..
+
+ // pull the code 
+ 1. first changes file is add ..cmd
+2. git commit -m "msg pass"
+3. git push
+
+8. mongoDB atlass
+1. connet the mongodb url ..(online)
+2. create the variable the newURL
+
+9. dotenv(.env) file
+this file is use for the sensitive information store that not to show any of it's.
+this file is use for the secure information(hidden information store it.).
+this file is not pushed in the git and github.. this store in .env file.
+ now the the online url show the username and password so the use og env file to hide the username and paasword..
+st-1 . npm i dotenv.
+st-2 . create the (.env) file
+st-3. syntax :- variablename=value
+st-4 . configure means show this perticular SERVER info. is know there.
+st-5 . the main file put the line , require('dotenv).confing();
+st-6 . use the file of variable and value, 
+const PORT = process.env.PORT ||(// or) 3000;
+
+10. host the node js online not the localhost
+the free service use the "render"
