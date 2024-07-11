@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const auth = require('')
 const db = require('./db_connection');
 const bodyparser = require('body-parser');
 require('dotenv').config();
@@ -7,7 +8,18 @@ require('dotenv').config();
 // all of it's the database operation is performed
 const Person = require('./model_person');
 
-app.get('/start' , function(req,res){
+
+// the lecture 9 middleware function..
+const logRequest = (req , res , next)=>
+{
+    // print the date and time.
+    console.log(`${new Date().toLocaleString()} request made to : ${req.originalUrl}`);
+    next(); // move to the next phase ..
+}
+
+// all routes can use the middleware
+app.use(logRequest);
+app.get('/start' ,logRequest, function(req,res){
 
     // console.log('hello guys start your lecture 6');
     res.send('hello guys start your lecture 6');

@@ -1,0 +1,51 @@
+the authentication and authorization lecture 
+
+1. Middleware : the Middleware is most imp topic in node js.
+  there 3 phase: 
+  1. request : client can request the order
+  2. Middleware : Middleware is kitchen. the process of the dish.
+  3. response : the cliennt can dish to make and back to the response.
+
+2. Middleware function : now in real world the login process is mandetory.
+   in the Middleware function the 3 parameter is use (req , res , next).
+  the next() is the function . in Middleware the call the next().
+  that means , now you move to the next phase.
+  now , i am not use the next() , not another function can run it bcoz 
+  it's stuck the compiler. that use the next(). 
+  the next() can move the next Middleware or the server response...
+   --> use the Middleware : app.use(var-name) : all routes can run the Middleware.
+   --> perticular function(sapretely) : inside the function as a parameter.
+
+3. authentication and authorization : 
+  first what is authentication ?
+    -> the authentication is identity . which is identify the person is inside the hotel member or not.
+     the identify must they use it the "username and password".
+    
+    second what is authorization ?
+    -> authorization : now suppose the chef is the hotel member and the manager is also the hotel member.
+      but the chef cannot the authorise in the hotel manager salary changing and showing.
+      one type of the limit can access this authorise rule.
+
+important :-> the authenticate is a Middleware used before to reaching the access.
+(aa login person ena layak che le nai e check krva mate use the authenticate process..).
+
+4. passport.js : this is a popular authenticate Middleware for node js .
+   in this lecture use the username and password ..
+   -> the username and password method can implement use the local-passport
+  -> install passport and local-passport...
+  -> passport.use(new LocalStretergy(async (username , password , done)=>{}))
+    this function is use the 3 parameter.
+    the done() is callbackfun. 
+    this function is check the varification is succesfull , fail or err.
+    
+ // now the done() is use the 3 parameter done(error , user , info).
+    /*
+    1. authenticate is success
+    done(null , user , {massage : 'msg'});
+    
+    2. authenticate is fail
+    done(null , false , {massage : 'msg'});
+
+    3. authenticate is error
+    done(err);
+    */

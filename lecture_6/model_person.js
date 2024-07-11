@@ -43,7 +43,18 @@ const Personschema = new mongoose.Schema({
     {
         type: Number,
         required: true
-    }
+    },
+// the lec_9 use the passport.js
+    username:
+    {
+        type: String,
+        required: true
+    },
+    password:
+    {
+        type: String,
+        required: true
+    },
 });
 
 // create the model and use the model
