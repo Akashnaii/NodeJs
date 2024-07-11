@@ -89,8 +89,8 @@ app.use(bodyparser.json()); // store in req.body..
 
 // use the routes..
 // use the variable in the .env file..
-const port = process.env.PORT || 3002
-app.use('/person',passport.authenticate('local' , {session : false}), routes);
+const port = process.env.PORT || 3000
+app.use('/person', routes);
 
     app.listen(port , ()=>{
         console.log('port is the complete ');

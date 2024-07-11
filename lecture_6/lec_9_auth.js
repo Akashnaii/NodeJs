@@ -4,7 +4,7 @@ const passport = require('passport');
 const LocalStratergy = require('passport-local').Strategy;
 
 //  first the person add the username and password
-const person = require('./lecture_6/model_person');
+const person = require('./model_person');
 
 
 // create the passport function.. this function is check the username and password is valid or not .
@@ -18,8 +18,10 @@ const user = await person.findOne({username : UserName});
 if(!user)
     return done(null , false , {massage : 'Incorrect username ...'});
 
-const ispswdmatch =  user.password === Password ? true : false;
-
+// this line is change for the hash password
+// const ispswdmatch =  user.password === Password ? true : false;
+ const ispswdmatch =  await user.comparePassword(Password);
+ // this functionn can build it in model person....
 if(ispswdmatch){
     return done(null , user);
     
@@ -31,7 +33,7 @@ if(ispswdmatch){
 
 // done();
 } catch (error) {
-    return done(err);
+    return done(error);
 }
 }));
 

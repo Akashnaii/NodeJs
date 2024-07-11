@@ -49,3 +49,31 @@ important :-> the authenticate is a Middleware used before to reaching the acces
     3. authenticate is error
     done(err);
     */
+
+5. now the password is show in database as it is .. it's very denger..
+  -> in this project use the password store as a "hash and salt".
+  -> first install the bcrypt .
+  bcrypt je password hoy tene hash function this hashed password banai de cheee.
+  salt is add in your password 
+  now in the database your password is store in password+salt = hashedpassword
+ -> jyare pn password save thse database maa eni pehla tene hash krvama avse.
+   ->> in mongoose provide the "pre Middleware". this Middleware is use to save the data before it's changes be done .
+
+   -> in the person model use the Middleware and bcrypt and the hashed password fucntion.
+   -> now in the password check in auth file u can change it and compare function is used
+   -> you can build the ccompare function person model.
+
+   // now password bcryp jyare repeat nakhse to te hashing String nai nakhe to tenu conversion kevu thay che.
+
+   prince -----> dnjdncjscjkvbhrvbbkjnxcsddvf
+   login time pr jyare fari password nakhvani vaari aave tyare
+   login -------> firg 
+
+   // to compare maa 
+   pehla aa string ne ------> password and match the password ... but it's wrong
+
+   // right method is
+   1. extract salt in hash string
+   2. salt + wrong password ----> hash create krse
+   3. je second step valoo hash and je apda password banayo ne je hash e hash thi compare thse..
+   
