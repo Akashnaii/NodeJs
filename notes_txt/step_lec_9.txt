@@ -1,0 +1,27 @@
+1. create the Middleware
+2. next() function defination
+3. authentication and authorization
+4. passport.js deffination for the username and password
+ -> install the passport and local-passport
+ -> passport.use(new localstratergy( async( username , password , done)))
+ -> done() defintion and use 3 argu.
+
+5. bcrypt library for the hashing
+ -> in hashed the pwd inside the model-person.
+ -> salt and hashedpwd defination.
+ -> create the one built in middleware "pre".
+ -> create the varible the salt , hashedpwd and convert the pwd in hashedpwd.
+
+6. compare the pwd process
+ -> in create the function for the compare pwd.
+  -> schema.methods.function-name = async function(one para)
+     bcrypt.compare(one para , this.pwd)
+  -> use this method in the password for matcch or not
+
+-> compare the hash pwd process
+  --> the password is "akash"
+  1. akash -> jndjjbreferbferb(hashing)
+  2. login time -> aayush
+   -> aayush -> grtjbtjbrjkbnjb(hashing).
+  3. compare the hashing for the password is valid or not ..
+   -> the use hash for the compare not the password(akash and aayush).  
