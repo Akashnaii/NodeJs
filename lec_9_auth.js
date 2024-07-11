@@ -1,5 +1,4 @@
-const express = require('express');
-const app = express();
+
 const passport = require('passport');
 // in this passport the uname and pwd is stretergy..
 const LocalStratergy = require('passport-local').Strategy;
@@ -14,12 +13,12 @@ passport.use(new LocalStratergy(async(UserName , Password , done)=>
 try {
     console.log(`username : ${UserName} and password : ${Password}`);
     // now find the usernmae and password and check it's valid or not 
-const user = person.findOne({username : UserName});
+const user = await person.findOne({username : UserName});
 
 if(!user)
     return done(null , false , {massage : 'Incorrect username ...'});
 
-const ispswdmatch = user.password === Password ? true : false;
+const ispswdmatch =  user.password === Password ? true : false;
 
 if(ispswdmatch){
     return done(null , user);
@@ -35,6 +34,8 @@ if(ispswdmatch){
     return done(err);
 }
 }));
+
+module.exports = passport;
 
 // now the done() is use the 3 parameter done(error , user , info).
  /*

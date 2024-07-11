@@ -1,14 +1,17 @@
 const express = require('express');
 const app = express();
-const auth = require('')
 const db = require('./db_connection');
 const bodyparser = require('body-parser');
 require('dotenv').config();
 
+const routes = require('./personroutes');
+const passport = require('./lec_9_auth');
+
+
 // all of it's the database operation is performed
-const Person = require('./model_person');
+const person = require('./model_person');
 
-
+app.use(passport.initialize());
 // the lecture 9 middleware function..
 const logRequest = (req , res , next)=>
 {
@@ -17,9 +20,11 @@ const logRequest = (req , res , next)=>
     next(); // move to the next phase ..
 }
 
+    
 // all routes can use the middleware
 app.use(logRequest);
-app.get('/start' ,logRequest, function(req,res){
+// use the middleware in the routes...
+app.get('/start' ,  function(req,res){
 
     // console.log('hello guys start your lecture 6');
     res.send('hello guys start your lecture 6');
@@ -80,12 +85,12 @@ app.use(bodyparser.json()); // store in req.body..
 
  // all the person api in personroutes.js file..
  //  import the router file..
-const routes = require('./personroutes');
+
 
 // use the routes..
 // use the variable in the .env file..
-const port = process.env.PORT || 3001
-app.use('/person', routes);
+const port = process.env.PORT || 3002
+app.use('/person',passport.authenticate('local' , {session : false}), routes);
 
     app.listen(port , ()=>{
         console.log('port is the complete ');
