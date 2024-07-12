@@ -1,0 +1,35 @@
+     SESSION AND TOKEN TOPIC...
+    
+ 1. what is token/session ? or why are you use this ?
+  -> when user can login the flipkart. 
+     so it's completely login(successfull).
+     now user inside the flipkart open the coupens page.
+     so we not need to again login(username and password).
+     with the help of the "SESSION/TOKEN".
+  
+  -> in the session and token store the many(personal) information.
+     suppose, in the flipkart your order is add to cart.. now u can cut the flipkart page and again open the add to cart not be delete/empty.
+
+how the session can work ...
+1. user send the login request to the server.
+2. the server authenticate the login request, send the session to the database and returns the cookie containing the unique session ID to the user.
+3. the user send the new request( with the cookie).
+4. the server checks in the database for the ID found the cookie,
+   if the ID is found it sends the requested pages to the user.
+
+what is cookies ?
+->a cookie is a small piece if data , that a website stores on the users computer or devide.
+-> it's contain the browser activity , prefreneces and interaction with the site.
+-> in the cookie include the session ID , you cannot the again set the username and password.
+imp. -> your browser autoatically includes the cookie int the HTTP requests it sends to the website server.
+
+types of cookies..
+1. session cookies :- this cookie are temporary and the page will be discard the coockie will be deleted.
+2. persistent cookies :- this cookie are stored on your device for the specified duration, even after the you close the browser. this not deleted.
+
+how the token can work ?
+-> the token too make use the secret key.
+1. the user sends the login request to the server.
+2. the server authorize the login and sends a token to the user.
+3. the user sends a new request(with the token).
+4. the server checks whether the token is valid or  not, if the token is valid it sends the requested pages to the user.

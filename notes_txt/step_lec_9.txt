@@ -1,6 +1,9 @@
 1. create the Middleware
+
 2. next() function defination
+
 3. authentication and authorization
+
 4. passport.js deffination for the username and password
  -> install the passport and local-passport
  -> passport.use(new localstratergy( async( username , password , done)))
