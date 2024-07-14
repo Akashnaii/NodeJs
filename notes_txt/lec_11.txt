@@ -43,4 +43,24 @@ now before the authenticate use the "username and password" .now use the token.
  2. create the JWT middleware function (verify the token). this use the function to use the token for the access.(jwtsuthmiddleware)
  3. generate token function.
  4. use the token.( now the signup the user it's generate the token together)
-   1. const  {jwtsuthmiddleware , generatetoken} = require('./../lec_11_jwt');
+   1. const  {jwtsuthmiddleware , generatetoken} = require('./../lec_11_jwt'); personrouts file
+   2. //  pass the token use for the payload
+
+        // pass many of information for the security purpose
+        const payload = {
+            id : SavePerson.id,
+            username : SavePerson.username,
+            password : SavePerson.password
+        }
+        console.log(payload);
+        const token = generatetoken(payload);
+        console.log(`token is ${token}`);
+        
+        res.status(200).json({saveperson : SavePerson , token : token});
+      
+      3. now use the expire token .. so the user cannot again the signup . the use of the login route.
+      4. now the token is provided and check the token is verify or not.
+          const authorization = req.headers.authorization;
+         if(!authorization) return res.status(401).json({error: "token not found"}); // the jwt file.
+         
+

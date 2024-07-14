@@ -12,7 +12,20 @@ router.post('/signup', async (req, res) => {
         // save the newPerson dat into the database..
         const SavePerson = await newPerson.save();
         console.log('data is saved');
-        res.status(200).json(SavePerson);
+        
+        //  pass the token use for the payload
+
+        // pass many of information for the security purpose
+        const payload = {
+            id : SavePerson.id,
+            username : SavePerson.username,
+            password : SavePerson.password
+        }
+        console.log(payload);
+        const token = generatetoken(payload);
+        console.log(`token is ${token}`);
+        
+        res.status(200).json({saveperson : SavePerson , token : token});
     }
     catch (err) {
         console.log(err);
@@ -21,7 +34,36 @@ router.post('/signup', async (req, res) => {
 
 });
 
-router.get('/', async (req, res) => {
+// login router.
+router.post('/login' , async(req , res)=>{
+
+    try {
+        // extract the username and password in req.body
+        const {username , password} = req.body;
+
+        // find the user by the username 
+        const user = await Person.findOne({username: username});
+
+        // check the username and password .. if username is correct but the password is not mathch
+        if( !user || !(await user.comparePassword(password))){
+            return res.status(401).json({error : 'invalid username and password'});
+        }
+  // now all of it's complete, the generate the token
+  const payload ={
+    id: user.id,
+    username : user.username
+  }
+
+  const token = generatetoken(payload);
+  res.json({token});
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ err: 'inernal server error' });
+    }
+});
+
+router.get('/',jwtsuthmiddleware, async (req, res) => {
     try {
         const data = await Person.find();
         console.log('data is fetched');
@@ -30,6 +72,25 @@ router.get('/', async (req, res) => {
         console.log(err);
         res.status(500).json({ err: 'inernal server error' });
     }
+});
+// profile route(token profile show it).
+router.get('/profile' ,jwtsuthmiddleware, async(req , res)=>
+{
+    try {
+        const userdata = req.user; // payload information show it
+        console.log("user data : " , userdata);
+        
+        // id through accesss
+        const userid = userdata.id;
+        const user = await Person.findById(userid);
+        
+        res.status(200).json({user});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ err: 'inernal server error' });
+    
+    }
+
 });
 
 router.get('/:worktype', async (req, res) => {

@@ -4,10 +4,13 @@ require('dotenv').config();
 
 const jwtsuthmiddleware = (req, res , next) =>
 {
+    // first check the token is authorise or not 
+    const authorization = req.headers.authorization;
+    if(!authorization) return res.status(401).json({error: "token not found"});
     // request header this token ne nikalsu(extract)
     // jyare token bne chene teni agal ek name "bearer" ena pachhi token hoy che.
     // tena lidhe split(' ')[1] write krvama aave che.
-    const token = req.headers.authoriztion.split(' ')[1];
+    const token = req.headers.authorization.split(' ')[1];
  // jo token naa mle
  if(!token) return res.status(401).json({error : "unauthorised"});
 
@@ -29,6 +32,6 @@ next();
 const generatetoken = (userdata)=>
 {
     // generate the new JWT token using the user data
-    return jwt.sign(userdata , process.env.JWT_SECRET);
+    return jwt.sign(userdata , process.env.JWT_SECRET , {expiresIn : 300000}); //  inside expirationIn for the expire time
 }
 module.exports = {jwtsuthmiddleware , generatetoken};

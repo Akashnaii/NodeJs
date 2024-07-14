@@ -98,5 +98,5 @@ Personschema.methods.comparePassword = async function(candidatepwd)
     }
 }
 // create the model and use the model
-const Person = mongoose.model('person' , Personschema);
+const Person = mongoose.model('Person' , Personschema);
 module.exports = Person;
