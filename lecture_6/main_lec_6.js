@@ -3,6 +3,8 @@ const app = express();
 const db = require('./db_connection');
 const bodyparser = require('body-parser');
 require('dotenv').config();
+const  {jwtsuthmiddleware , generatetoken} = require('./../lec_11_jwt');
+
 
 const routes = require('./personroutes');
 const passport = require('./lec_9_auth');
@@ -12,6 +14,7 @@ const passport = require('./lec_9_auth');
 const person = require('./model_person');
 
 app.use(passport.initialize());
+const authmiddleware = passport.authenticate('local' , {session:false});
 // the lecture 9 middleware function..
 const logRequest = (req , res , next)=>
 {

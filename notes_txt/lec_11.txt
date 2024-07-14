@@ -1,0 +1,46 @@
+// JWT token .
+ the jwt stands for Json Web Token.
+ now in the modern time the tooken can better way as compare to session.
+ the jwt is provide one token..
+  
+  -> there are 3 part of structure in JWT.
+    1. header , 2. payload and 3. signature
+  -> they use the cryptographic algorithms.
+
+ JWT is commposed of three section used by the dots(.)
+  header.payload.signature
+
+1. header :- it's typically of two parts
+         -> typ(Type) :- use it the "JWT"
+         -> alg(algorithm):- diffrenet algorithms use the name as , HMAS SHA256 OR RSA.
+
+2. payload :- now you can generate the token .. which is use the uniquely data for generate the token.
+             the payload can contain the user information . one data is a unique to use the generate the token.
+
+3. signature :- verifies the integrity of the token and ensure that it has not been tampared with during the transmission.
+                it's created by talking the encoded header , encoded payload , a secret(for HMAC algo.) and generate the signature.
+
+JWT fuunction :-
+the jwt function is , jwt.sign() and jwt.verify() are two funnctions provided by the "jsonwebtoken" library in the node.js.
+
+1. jwt.sign() :- this function is use to generate the a new JWT token.
+ -> it takes 3 parameter,
+  1. payload : payload contain one unique identity the user. the data want the include in the token.
+  2. secret OR private key : this secret key to sign the token(create). it can be string contain the secret cryptographic key.
+  3. optional : this parameter is use some propertie like , expiration time(expireIn).
+
+2. jwt.verify() : this function is used to verify and decode the JWT token to retrieve the payload.
+  -> it takes 3 parameter ,
+  1. token : the token is verified.
+  2. secret OR public key : this key is use to verify the token key.
+  3. optional : contain optional parameter.
+
+now before the authenticate use the "username and password" .now use the token.
+
+ start the coding part .
+
+ 1. install the jsonwebtoken
+ 2. create the JWT middleware function (verify the token). this use the function to use the token for the access.(jwtsuthmiddleware)
+ 3. generate token function.
+ 4. use the token.( now the signup the user it's generate the token together)
+   1. const  {jwtsuthmiddleware , generatetoken} = require('./../lec_11_jwt');

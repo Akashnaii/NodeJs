@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Person = require('./model_person');
+const  {jwtsuthmiddleware , generatetoken} = require('./../lec_11_jwt');
 
-
-router.post('/', async (req, res) => {
+// lecture 11 .. change the routes name signupa and create the login.
+router.post('/signup', async (req, res) => {
     try {
         const data = req.body;
         const newPerson = new Person(data);
